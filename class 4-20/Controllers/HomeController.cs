@@ -120,7 +120,7 @@ namespace class_4_20.Controllers
                 _mgr.DeleteAd(adId);
                 TempData["Success"] = "Ad was deleted";
             }
-            return Redirect("/home/myaccount");
+            return Redirect("/");
         }
     }
 }
