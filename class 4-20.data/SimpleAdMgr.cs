@@ -92,7 +92,7 @@ namespace class_4_20.data
                 }
                 cmd.Parameters.AddWithValue("@userId", ad.UserId);
                 cmd.Parameters.AddWithValue("@text", ad.Text);
-                cmd.Parameters.AddWithValue("@name", ad.Name);
+                cmd.Parameters.AddWithValue("@name", name);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }

@@ -23,7 +23,11 @@ namespace class_4_20.Controllers
                 ViewBag.Message = TempData["Success"];
             }
             bool isLoggedIn = User.Identity.IsAuthenticated;
-            var user = _mgr.GetUserByEmail(User.Identity.Name);
+            var user = new User();
+            if (isLoggedIn)
+            {
+                user = _mgr.GetUserByEmail(User.Identity.Name);
+            }
             var vm = new IndexViewModel
             {
                 Ads = _mgr.GetSimpleAds().Select(ad => new SimpleAd
@@ -47,6 +51,7 @@ namespace class_4_20.Controllers
         public IActionResult SignUp(User user, string password)
         {
             _mgr.AddUser(user, password);
+            TempData["Success"] = "Welcome! We hope you'll enjoy all the perks of having an account!";
             return Redirect("/");
         }
         public IActionResult Login()
@@ -99,10 +104,6 @@ namespace class_4_20.Controllers
         [Authorize]
         public IActionResult MyAccount()
         {
-            if (TempData["Success"] != null)
-            {
-                ViewBag.Message = TempData["Error"];
-            }
             var user = _mgr.GetUserByEmail(User.Identity.Name);
             user.Ads = _mgr.GetAdsForUserId(user.Id);
             return View(user);
