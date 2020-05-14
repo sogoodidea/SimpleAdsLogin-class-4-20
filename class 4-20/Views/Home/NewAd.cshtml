@@ -1,0 +1,25 @@
+﻿@model User
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <h1 style="text-align: center">New Ad</h1>
+        <br />
+        <form action="/home/newad" method="post" class="card card-body bg-light">
+            <input type="hidden" name="userid" value="@Model.Id" />
+            <div class="row">
+                <div class="col-md-6">
+                    <input name="name" type="text" class="form-control" placeholder="Name" value="@Model.Name"/>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" disabled value="@Model.PhoneNumber"/>
+                </div>
+            </div>
+            <br />
+            <textarea name="text" class="form-control" rows="10" placeholder="Text for ad"></textarea>
+            <br />
+            <div class="col-md-2">
+                <button class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

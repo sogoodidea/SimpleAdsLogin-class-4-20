@@ -1,0 +1,26 @@
+﻿@model User
+
+<h1 style="text-align: center">Ads for @Model.Name</h1>
+<br />
+
+@foreach (SimpleAd ad in Model.Ads)
+{
+    <div class="row">
+        <div class="col-md-6 offset-3 card card-body bg-light">
+            <div class="container">
+                <p>Listed by: @(ad.Name ?? "anonymous")</p>
+                <p>Listed on: @ad.DateCreated.ToLongDateString()</p>
+                <p>Phone number: @ad.PhoneNumber</p>
+                <h3>Details:</h3>
+                <p>@ad.Text</p>
+                <form method="post" action="/home/deletead">
+                    <input type="hidden" name="adId" value="@ad.Id" />
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br />
+}
+
+
